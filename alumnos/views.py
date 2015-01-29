@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from alumnos.models import Alumno, Grado, Asignatura
+from alumnos.models import Alumno, Grado, Asignatura, Asistencia
 from rest_framework.response import Response
-from alumnos.serializers import AlumnoSerializer, GradoSerializer, AsignaturaSerializer
+from alumnos.serializers import AlumnoSerializer, GradoSerializer, AsignaturaSerializer, AsistenciaSerializer
 from rest_framework.decorators import detail_route, list_route
 
 class AlumnoViewsets(viewsets.ModelViewSet):
@@ -33,7 +33,8 @@ class GradoViewsets(viewsets.ModelViewSet):
 class AsignaturaViewsets(viewsets.ModelViewSet):
     queryset = Asignatura.objects.all()
     serializer_class = AlumnoSerializer
-# Create your views here.
 
 
-# Create your views here.
+class AsistenciaViewset(viewsets.ModelViewSet):
+	queryset = Asistencia.objects.all()
+	serializer_class = AsistenciaSerializer

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from alumnos.models import Alumno,Grado,Asignatura
+from alumnos.models import Alumno,Grado,Asignatura, Asistencia
 
 class AlumnoSerializer(serializers.ModelSerializer):
 
@@ -17,3 +17,8 @@ class AsignaturaSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Asignatura
+
+class AsistenciaSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Asistencia

@@ -7,6 +7,7 @@ router = routers.DefaultRouter()
 router.register(r'alumnos', views.AlumnoViewsets)
 router.register(r'grados',views.GradoViewsets)
 router.register(r'asignaturas', views.AsignaturaViewsets)
+router.register(r'asistencias', views.AsistenciaViewset)
 
 
 urlpatterns = patterns('',
@@ -16,5 +17,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api-token-auth/', views.obtain_auth_token)
 )
