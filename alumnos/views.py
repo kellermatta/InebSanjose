@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from alumnos.models import Alumno, Grado, Asignatura, Asistencia
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from alumnos.serializers import AlumnoSerializer, GradoSerializer, AsignaturaSerializer, AsistenciaSerializer
 from rest_framework.decorators import detail_route, list_route
@@ -8,6 +9,7 @@ from rest_framework.decorators import detail_route, list_route
 class AlumnoViewsets(viewsets.ModelViewSet):
 	queryset = Alumno.objects.all()
 	serializer_class = AlumnoSerializer
+	permission_classes = (IsAuthenticated,)
 
 
 	def list(self, request):
@@ -18,9 +20,9 @@ class AlumnoViewsets(viewsets.ModelViewSet):
 
 
 class GradoViewsets(viewsets.ModelViewSet):
-
     queryset = Grado.objects.all()
     serializer_class = GradoSerializer
+    permission_classes = (IsAuthenticated,)
 
     def retrieve(self, request, pk):
 		queryset = Alumno.objects.filter(grado=pk)
@@ -33,8 +35,10 @@ class GradoViewsets(viewsets.ModelViewSet):
 class AsignaturaViewsets(viewsets.ModelViewSet):
     queryset = Asignatura.objects.all()
     serializer_class = AlumnoSerializer
+    
 
 
 class AsistenciaViewset(viewsets.ModelViewSet):
+	permission_classes = (IsAuthenticated,)
 	queryset = Asistencia.objects.all()
 	serializer_class = AsistenciaSerializer
